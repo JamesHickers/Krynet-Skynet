@@ -68,7 +68,6 @@
       border-radius: 4px;
     }
 
-    /* Badge styles */
     .place-badge {
       display: inline-block;
       padding: 0.3rem 0.6rem;
@@ -99,14 +98,17 @@
       color: #eee;
     }
 
-    /* Winner styling */
+    .place-5 {
+      background: #5d4037;
+      color: #eee;
+    }
+
     tr.winner {
       font-weight: 900;
       position: relative;
       cursor: pointer;
     }
 
-    /* Rainbow text animation */
     @keyframes rainbow {
       0%, 100% { color: #ff0000; text-shadow: 0 0 8px #ff0000; }
       14% { color: #ff7f00; text-shadow: 0 0 8px #ff7f00; }
@@ -131,7 +133,6 @@
       user-select: none;
     }
 
-    /* Krynet-specific icon boost */
     tr.winner td.icon img {
       width: 48px;
       height: 48px;
@@ -140,7 +141,6 @@
       box-shadow: 0 0 10px #1e88e5aa;
     }
 
-    /* Confetti animation */
     .confetti-piece {
       position: absolute;
       width: 8px;
@@ -153,11 +153,11 @@
       animation: confetti-fall 1.5s linear infinite;
     }
 
-    .confetti-piece:nth-child(1) { left: 10px; background: #f44336; animation-delay: 0s; }
-    .confetti-piece:nth-child(2) { left: 20px; background: #4caf50; animation-delay: 0.2s; }
-    .confetti-piece:nth-child(3) { left: 30px; background: #2196f3; animation-delay: 0.4s; }
-    .confetti-piece:nth-child(4) { left: 40px; background: #ff9800; animation-delay: 0.6s; }
-    .confetti-piece:nth-child(5) { left: 50px; background: #9c27b0; animation-delay: 0.8s; }
+    .confetti-piece:nth-of-type(1) { left: 10px; background: #f44336; animation-delay: 0s; }
+    .confetti-piece:nth-of-type(2) { left: 20px; background: #4caf50; animation-delay: 0.2s; }
+    .confetti-piece:nth-of-type(3) { left: 30px; background: #2196f3; animation-delay: 0.4s; }
+    .confetti-piece:nth-of-type(4) { left: 40px; background: #ff9800; animation-delay: 0.6s; }
+    .confetti-piece:nth-of-type(5) { left: 50px; background: #9c27b0; animation-delay: 0.8s; }
 
     @keyframes confetti-fall {
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
@@ -199,23 +199,23 @@
       </tr>
     </thead>
     <tbody>
-<tr class="winner place-1" id="krynet-row">
-  <td><span class="place-badge place-1">1st</span></td>
-  <td class="icon" style="position: relative;">
-    <img src="krynet-icon.png" alt="Krynet's Logo" />
-    <span class="name">Krynet</span><span class="crown">👑</span>
-    <div class="confetti-piece"></div>
-    <div class="confetti-piece"></div>
-    <div class="confetti-piece"></div>
-    <div class="confetti-piece"></div>
-    <div class="confetti-piece"></div>
-  </td>
-  <td>16+</td>
-  <td><span class="stars">★★★★★</span></td>
-  <td><span class="stars">★★★★★</span></td>
-  <td><span class="stars">★★★★★</span></td>
-  <td>Strong Contender</td>
-</tr>
+      <tr class="winner place-1" id="krynet-row">
+        <td><span class="place-badge place-1">1st</span></td>
+        <td class="icon">
+          <img src="krynet.png" alt="Krynet Logo" />
+          <span class="name">Krynet</span><span class="crown">👑</span>
+          <div class="confetti-piece"></div>
+          <div class="confetti-piece"></div>
+          <div class="confetti-piece"></div>
+          <div class="confetti-piece"></div>
+          <div class="confetti-piece"></div>
+        </td>
+        <td>16+</td>
+        <td><span class="stars">★★★★★</span></td>
+        <td><span class="stars">★★★★★</span></td>
+        <td><span class="stars">★★★★★</span></td>
+        <td>Strong Contender</td>
+      </tr>
       <tr class="place-2">
         <td><span class="place-badge place-2">2nd</span></td>
         <td class="icon">
@@ -231,7 +231,7 @@
       <tr class="place-3">
         <td><span class="place-badge place-3">3rd</span></td>
         <td class="icon">
-          <img src="Telegram_logo.svg" alt="Telegram Logo" />
+          <img src="telegram.png" alt="Telegram Logo" />
           Telegram
         </td>
         <td>13+</td>
@@ -243,13 +243,25 @@
       <tr class="place-4">
         <td><span class="place-badge place-4">4th</span></td>
         <td class="icon">
-          <img src="Guilded.png" alt="Guilded Logo" />
+          <img src="guilded.png" alt="Guilded Logo" />
           Guilded
         </td>
         <td>13+</td>
         <td><span class="stars">★★☆☆☆</span></td>
-        <td><span class="stars empty">★★☆☆☆</span></td>
-        <td><span class="stars empty">★★☆☆☆</span></td>
+        <td><span class="stars">★★☆☆☆</span></td>
+        <td><span class="stars">★★☆☆☆</span></td>
+        <td>Will Never Replace</td>
+      </tr>
+      <tr class="place-5">
+        <td><span class="place-badge place-5">5th</span></td>
+        <td class="icon">
+          <img src="skynet.png" alt="Skynet Logo" />
+          Skynet
+        </td>
+        <td>13+</td>
+        <td><span class="stars">★★★☆☆</span></td>
+        <td><span class="stars">★☆☆☆☆</span></td>
+        <td><span class="stars">★★☆☆☆</span></td>
         <td>Will Never Replace</td>
       </tr>
     </tbody>
