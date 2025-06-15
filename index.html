@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Discord Replacement Threat List</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #121212;
+      color: #eee;
+      margin: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      margin-bottom: 2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      max-width: 900px;
+      border-collapse: collapse;
+      background: #1e1e1e;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    thead {
+      background: #2a2a2a;
+    }
+    th, td {
+      padding: 1rem 1.25rem;
+      text-align: center;
+      border-bottom: 1px solid #333;
+      vertical-align: middle;
+    }
+    th {
+      font-weight: 700;
+    }
+    tbody tr:hover {
+      background: #333;
+    }
+    .yes {
+      color: #4caf50;
+      font-weight: 700;
+    }
+    .no {
+      color: #f44336;
+      font-weight: 700;
+    }
+    .maybe {
+      color: #ffb300;
+      font-weight: 700;
+    }
+    .growing {
+      color: #2196f3;
+      font-weight: 700;
+    }
+    td.icon {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+    td.icon img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    /* Winner row style */
+    tr.winner {
+      background: #2196f3;
+      color: #fff;
+      font-weight: 900;
+      position: relative;
+      transition: background 0.3s ease;
+    }
+    tr.winner:hover {
+      background: #1e88e5;
+      cursor: pointer;
+    }
+
+    /* Confetti container */
+    tr.winner:hover td:first-child {
+      position: relative;
+      overflow: visible;
+    }
+
+    /* Confetti effect */
+    .confetti-piece {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #ffeb3b;
+      opacity: 0.9;
+      animation: confetti-fall 1.5s linear infinite;
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .confetti-piece:nth-child(1) { left: 10px; animation-delay: 0s; background: #f44336; }
+    .confetti-piece:nth-child(2) { left: 20px; animation-delay: 0.2s; background: #4caf50; }
+    .confetti-piece:nth-child(3) { left: 30px; animation-delay: 0.4s; background: #2196f3; }
+    .confetti-piece:nth-child(4) { left: 40px; animation-delay: 0.6s; background: #ff9800; }
+    .confetti-piece:nth-child(5) { left: 50px; animation-delay: 0.8s; background: #9c27b0; }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(50px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Discord Replacement Threat List</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Platform</th>
+        <th>Age Limit</th>
+        <th>Robust Voice Chat</th>
+        <th>API Access</th>
+        <th>Privacy Focus</th>
+        <th>Community Tools</th>
+        <th>Mobile Support</th>
+        <th>Active User Base</th>
+        <th>Could Replace Discord?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Logo" />
+          Discord
+        </td>
+        <td>13+</td>
+        <td class="yes">Yes</td>
+        <td class="yes">Yes</td>
+        <td class="no">No</td>
+        <td class="yes">Yes</td>
+        <td class="yes">Yes</td>
+        <td class="yes">Massive</td>
+        <td class="no">Target</td>
+      </tr>
+      <tr class="winner" id="krynet-row">
+        <td class="icon" style="position: relative;">
+          <img src="https://cdn-icons-png.flaticon.com/512/919/919841.png" alt="Krynet Logo" />
+          Krynet
+          <!-- Confetti pieces -->
+          <div class="confetti-piece"></div>
+          <div class="confetti-piece"></div>
+          <div class="confetti-piece"></div>
+          <div class="confetti-piece"></div>
+          <div class="confetti-piece"></div>
+        </td>
+        <td>16+</td>
+        <td class="yes">Yes, free (Enterprise plug-in optional)</td>
+        <td class="maybe">API with approved devs only</td>
+        <td class="yes">Strong</td>
+        <td class="yes">Good</td>
+        <td class="yes">Yes</td>
+        <td class="growing">Unknown / Growing</td>
+        <td class="maybe">Strong Contender</td>
+      </tr>
+      <tr>
+        <td class="icon">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Skynet_Logo.svg/1024px-Skynet_Logo.svg.png" alt="Skynet Logo" style="width:24px; height:24px;" />
+          Skynet
+        </td>
+        <td>13+</td>
+        <td class="yes">Basic</td>
+        <td class="no">Limited</td>
+        <td class="maybe">Moderate</td>
+        <td class="no">Limited</td>
+        <td class="yes">Yes</td>
+        <td class="no">Small</td>
+        <td class="no">Needs More Features</td>
+      </tr>
+      <tr>
+        <td class="icon">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Logo" />
+          Telegram
+        </td>
+        <td>13+</td>
+        <td class="maybe">Voice chats but limited</td>
+        <td class="yes">Yes (Bot API)</td>
+        <td class="yes">Strong</td>
+        <td class="maybe">Basic groups</td>
+        <td class="yes">Yes</td>
+        <td class="yes">Large</td>
+        <td class="no">Not Full Discord Replacement</td>
+      </tr>
+      <tr>
+        <td class="icon">
+          <img src="https://cdn.iconscout.com/icon/free/png-256/guilded-282866.png" alt="Guilded Logo" />
+          Guilded
+        </td>
+        <td>13+</td>
+        <td class="yes">Yes</td>
+        <td class="yes">Yes</td>
+        <td class="maybe">Moderate</td>
+        <td class="yes">Great</td>
+        <td class="yes">Yes</td>
+        <td class="maybe">Medium</td>
+        <td class="maybe">Potential</td>
+      </tr>
+      <tr>
+        <td class="icon">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Mastodon_Logo_%282021%29.svg/1024px-Mastodon_Logo_%282021%29.svg.png" alt="Mastodon Logo" />
+          Mastodon
+        </td>
+        <td>13+</td>
+        <td class="no">No</td>
+        <td class="yes">Yes (Open API)</td>
+        <td class="yes">Very Strong</td>
+        <td class="no">Limited</td>
+        <td class="yes">Yes</td>
+        <td class="no">Small</td>
+        <td class="no">Not Built for Chat</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    // On hover show confetti animation continuously for Krynet's name
+    const krynetRow = document.getElementById('krynet-row');
+    const confettiPieces = krynetRow.querySelectorAll('.confetti-piece');
+
+    krynetRow.addEventListener('mouseenter', () => {
+      confettiPieces.forEach((piece, i) => {
+        piece.style.animationPlayState = 'running';
+      });
+    });
+
+    krynetRow.addEventListener('mouseleave', () => {
+      confettiPieces.forEach((piece, i) => {
+        piece.style.animationPlayState = 'paused';
+      });
+    });
+
+    // Start paused
+    confettiPieces.forEach(piece => {
+      piece.style.animationPlayState = 'paused';
+    });
+  </script>
+</body>
+</html>
