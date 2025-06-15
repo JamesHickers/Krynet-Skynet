@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SKYNET Platform Review</title>
+  <style>
+    body {
+      background: #121212;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #4caf50;
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      border-bottom: 2px solid #4caf50;
+      padding-bottom: 0.3rem;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 2rem;
+    }
+    li {
+      margin-bottom: 0.8rem;
+    }
+    .stars {
+      font-size: 2rem;
+      color: #ffb400;
+      user-select: none;
+      letter-spacing: 0.1rem;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    .section p {
+      background: #222;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #ccc;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 4rem;
+      border-top: 1px solid #333;
+      padding-top: 1rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>SKYNET Platform Review</h1>
+
+  <div class="section">
+    <h2>Overview</h2>
+    <p>
+      SKYNET is a messaging and voice chat platform featuring APIs for account management, direct messaging, and voice sessions.
+      The platform includes a web-based DM client with media attachments, basic moderation, and user profile handling.
+      It aims for a versatile, modern chat experience with some neat features, but shows cracks when it comes to security and privacy.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Performance</h2>
+    <p>
+      SKYNET runs smooth with an intuitive UI and decent API response times in local development. The use of localStorage for caching messages is practical but risks data loss on clearing browser storage.
+      Reliance on external services like catbox.moe for file uploads may introduce latency and dependency.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Privacy</h2>
+    <p>
+      Privacy is a weak spot. User data is stored mostly client-side without clear encryption, and files are uploaded to a third-party (catbox.moe) without privacy guarantees.
+      The Content-Security-Policy includes 'unsafe-inline' and 'unsafe-eval', opening doors for script injection attacks.
+      There's no sign of end-to-end encryption or advanced user data protections.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Security</h2>
+    <p>
+      Security is basic at best. Client-side moderation can be bypassed, and banning users only happens locally without server enforcement.
+      CORS is patched via a proxy (corsproxy.io), which may expose users to additional risk.
+      The API authentication model is token-based, but no info on token expiry or refresh, nor multi-factor auth.
+      Content-Security-Policy is too loose to defend against common attacks effectively.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Usability</h2>
+    <p>
+      The interface is clean and easy to navigate. Switching between DM threads and sending multimedia is straightforward.
+      However, the reliance on localStorage means users lose message history if they switch browsers or clear data.
+      Also, the lack of visible loading states and error feedback during network operations can confuse users.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Scalability</h2>
+    <p>
+      SKYNET's current design fits small user bases or local development but struggles for large-scale deployment.
+      LocalStorage-based data storage, third-party file uploads, and weak server-side enforcement limit scaling.
+      A solid backend with persistent, secure storage and better authentication would be needed for serious growth.
+    </p>
+  </div>
+
+  <h2>Final Ratings</h2>
+  <ul>
+    <li aria-label="Performance rating: 7 out of 10">
+      Performance:<span class="stars">★★★★★★★☆☆☆</span>
+    </li>
+    <li aria-label="Privacy rating: 3 out of 10">
+      Privacy:<span class="stars">★★★☆☆☆☆☆☆☆</span>
+    </li>
+    <li aria-label="Security rating: 2.5 out of 10">
+      Security:<span class="stars">★★☆☆☆☆☆☆☆☆</span>
+    </li>
+    <li aria-label="Usability rating: 5.5 out of 10">
+      Usability:<span class="stars">★★★★★☆☆☆☆☆</span>
+    </li>
+    <li aria-label="Scalability rating: 3 out of 10">
+      Scalability:<span class="stars">★★★☆☆☆☆☆☆☆</span>
+    </li>
+  </ul>
+
+  <footer>
+    Reviewed by Bloodware, Incorporated — 2025
+  </footer>
+
+</body>
+</html>
