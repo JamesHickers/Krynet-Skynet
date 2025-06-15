@@ -1,34 +1,44 @@
-// script.js
-
-// Enable confetti on hover for the winner row
 document.addEventListener("DOMContentLoaded", () => {
   const winnerRow = document.getElementById("krynet-row");
-  const confettiPieces = winnerRow.querySelectorAll(".confetti-piece");
+  if (winnerRow) {
+    const confettiPieces = winnerRow.querySelectorAll(".confetti-piece");
 
-  winnerRow.addEventListener("mouseenter", () => {
-    confettiPieces.forEach(piece => {
-      piece.style.opacity = "1";
-      piece.style.animationPlayState = "running";
+    winnerRow.addEventListener("mouseenter", () => {
+      confettiPieces.forEach(piece => {
+        piece.style.opacity = "1";
+        piece.style.animationPlayState = "running";
+      });
     });
-  });
 
-  winnerRow.addEventListener("mouseleave", () => {
-    confettiPieces.forEach(piece => {
-      piece.style.opacity = "0";
-      piece.style.animationPlayState = "paused";
+    winnerRow.addEventListener("mouseleave", () => {
+      confettiPieces.forEach(piece => {
+        piece.style.opacity = "0";
+        piece.style.animationPlayState = "paused";
+      });
     });
-  });
+  }
+
+  launchConfettiFromElement('tr.winner');
+
+  const winnerClickTarget = document.querySelector('tr.winner');
+  if (winnerClickTarget) {
+    winnerClickTarget.addEventListener('click', () => {
+      launchConfettiFromElement('tr.winner');
+    });
+  }
 });
 
 const canvas = document.getElementById('confetti-canvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas ? canvas.getContext('2d') : null;
 
 let confetti = [];
 let animationFrameId;
 
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  if (canvas) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
@@ -56,8 +66,11 @@ function createConfettiPiece(x, y) {
 }
 
 function updateConfetti() {
+  if (!ctx || !canvas) return;
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  confetti.forEach((c, i) => {
+  confetti = confetti.filter(c => c.alpha > 0);
+  confetti.forEach(c => {
     c.velocity.y += c.gravity;
     c.x += c.velocity.x;
     c.y += c.velocity.y;
@@ -71,8 +84,6 @@ function updateConfetti() {
     ctx.globalAlpha = Math.max(0, c.alpha);
     ctx.fillRect(-c.size / 2, -c.size / 2, c.size, c.size);
     ctx.restore();
-
-    if (c.alpha <= 0) confetti.splice(i, 1);
   });
 
   if (confetti.length > 0) {
@@ -82,7 +93,7 @@ function updateConfetti() {
 
 function launchConfettiFromElement(selector) {
   const el = document.querySelector(selector);
-  if (!el) return;
+  if (!el || !canvas) return;
 
   const rect = el.getBoundingClientRect();
   const x = rect.left + rect.width / 2;
@@ -95,12 +106,3 @@ function launchConfettiFromElement(selector) {
   cancelAnimationFrame(animationFrameId);
   updateConfetti();
 }
-
-// Automatically launch on page load or when clicked
-document.addEventListener('DOMContentLoaded', () => {
-  launchConfettiFromElement('tr.winner');
-});
-
-document.querySelector('tr.winner')?.addEventListener('click', () => {
-  launchConfettiFromElement('tr.winner');
-});
