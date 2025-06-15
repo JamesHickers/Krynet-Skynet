@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Discord Replacement Threat List</title>
+  <title>Discord Replacement Threat List - Ranked</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
     body {
@@ -22,7 +22,7 @@
     }
     table {
       width: 100%;
-      max-width: 900px;
+      max-width: 1000px;
       border-collapse: collapse;
       background: #1e1e1e;
       border-radius: 8px;
@@ -44,27 +44,13 @@
     tbody tr:hover {
       background: #333;
     }
-    .yes {
-      color: #4caf50;
-      font-weight: 700;
-    }
-    .no {
-      color: #f44336;
-      font-weight: 700;
-    }
-    .maybe {
-      color: #ffb300;
-      font-weight: 700;
-    }
-    .growing {
-      color: #2196f3;
-      font-weight: 700;
-    }
     td.icon {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       font-weight: 600;
+      justify-content: center;
+      position: relative;
     }
     td.icon img {
       width: 24px;
@@ -73,23 +59,87 @@
       border-radius: 4px;
     }
 
+    /* Place badges */
+    .place-badge {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      min-width: 70px;
+      user-select: none;
+    }
+    .place-1 {
+      background: #1e88e5;
+      color: white;
+    }
+    .place-2 {
+      background: #fbc02d;
+      color: #222;
+    }
+    .place-3 {
+      background: #b0bec5; /* Silver-ish */
+      color: #222;
+    }
+    .place-4 {
+      background: #6d4c41; /* Brown */
+      color: #eee;
+    }
+
     /* Winner row style */
     tr.winner {
-      background: #2196f3;
-      color: #fff;
       font-weight: 900;
       position: relative;
-      transition: background 0.3s ease;
-    }
-    tr.winner:hover {
-      background: #1e88e5;
       cursor: pointer;
     }
 
+    /* RGB Rainbow text animation */
+    @keyframes rainbow {
+      0%, 100% {
+        color: #ff0000;
+        text-shadow: 0 0 8px #ff0000;
+      }
+      14% {
+        color: #ff7f00;
+        text-shadow: 0 0 8px #ff7f00;
+      }
+      28% {
+        color: #ffff00;
+        text-shadow: 0 0 8px #ffff00;
+      }
+      42% {
+        color: #00ff00;
+        text-shadow: 0 0 8px #00ff00;
+      }
+      56% {
+        color: #0000ff;
+        text-shadow: 0 0 8px #0000ff;
+      }
+      70% {
+        color: #4b0082;
+        text-shadow: 0 0 8px #4b0082;
+      }
+      84% {
+        color: #8b00ff;
+        text-shadow: 0 0 8px #8b00ff;
+      }
+    }
+    tr.winner td.icon span.name {
+      font-size: 1.2rem;
+      font-weight: 900;
+      animation: rainbow 4s linear infinite;
+      display: inline-block;
+      user-select: none;
+    }
+    tr.winner td.icon span.crown {
+      font-size: 1.2rem;
+      margin-left: 6px;
+      user-select: none;
+    }
+
     /* Confetti container */
-    tr.winner:hover td:first-child {
+    td.icon {
       position: relative;
-      overflow: visible;
     }
 
     /* Confetti effect */
@@ -97,23 +147,23 @@
       position: absolute;
       width: 8px;
       height: 8px;
-      background-color: #ffeb3b;
-      opacity: 0.9;
-      animation: confetti-fall 1.5s linear infinite;
       border-radius: 2px;
       pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
       z-index: 10;
+      animation: confetti-fall 1.5s linear infinite;
     }
-    .confetti-piece:nth-child(1) { left: 10px; animation-delay: 0s; background: #f44336; }
-    .confetti-piece:nth-child(2) { left: 20px; animation-delay: 0.2s; background: #4caf50; }
-    .confetti-piece:nth-child(3) { left: 30px; animation-delay: 0.4s; background: #2196f3; }
-    .confetti-piece:nth-child(4) { left: 40px; animation-delay: 0.6s; background: #ff9800; }
-    .confetti-piece:nth-child(5) { left: 50px; animation-delay: 0.8s; background: #9c27b0; }
+    .confetti-piece:nth-child(1) { left: 10px; background: #f44336; animation-delay: 0s; }
+    .confetti-piece:nth-child(2) { left: 20px; background: #4caf50; animation-delay: 0.2s; }
+    .confetti-piece:nth-child(3) { left: 30px; background: #2196f3; animation-delay: 0.4s; }
+    .confetti-piece:nth-child(4) { left: 40px; background: #ff9800; animation-delay: 0.6s; }
+    .confetti-piece:nth-child(5) { left: 50px; background: #9c27b0; animation-delay: 0.8s; }
 
     @keyframes confetti-fall {
       0% {
         transform: translateY(0) rotate(0deg);
-        opacity: 0.9;
+        opacity: 1;
       }
       100% {
         transform: translateY(50px) rotate(360deg);
@@ -121,43 +171,46 @@
       }
     }
 
+    /* Show confetti on hover only */
+    tr.winner:hover .confetti-piece {
+      opacity: 1;
+      animation-play-state: running !important;
+    }
+    tr.winner .confetti-piece {
+      animation-play-state: paused;
+    }
+
+    /* Stars for rating */
+    .stars {
+      color: #fbc02d;
+      font-size: 1.1rem;
+      user-select: none;
+    }
+    .stars.empty {
+      color: #555;
+    }
   </style>
 </head>
 <body>
-  <h1>Discord Replacement Threat List</h1>
+  <h1>Discord Replacement Threat List — Ranked</h1>
   <table>
     <thead>
       <tr>
+        <th>Place</th>
         <th>Platform</th>
         <th>Age Limit</th>
-        <th>Robust Voice Chat</th>
-        <th>API Access</th>
-        <th>Privacy Focus</th>
-        <th>Community Tools</th>
-        <th>Mobile Support</th>
-        <th>Active User Base</th>
+        <th>Performance</th>
+        <th>Privacy</th>
+        <th>Security</th>
         <th>Could Replace Discord?</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="icon">
-          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Logo" />
-          Discord
-        </td>
-        <td>13+</td>
-        <td class="yes">Yes</td>
-        <td class="yes">Yes</td>
-        <td class="no">No</td>
-        <td class="yes">Yes</td>
-        <td class="yes">Yes</td>
-        <td class="yes">Massive</td>
-        <td class="no">Target</td>
-      </tr>
-      <tr class="winner" id="krynet-row">
+      <tr class="winner place-1" id="krynet-row">
+        <td><span class="place-badge place-1">1st</span></td>
         <td class="icon" style="position: relative;">
           <img src="https://cdn-icons-png.flaticon.com/512/919/919841.png" alt="Krynet Logo" />
-          Krynet
+          <span class="name">Krynet</span><span class="crown">👑</span>
           <!-- Confetti pieces -->
           <div class="confetti-piece"></div>
           <div class="confetti-piece"></div>
@@ -166,94 +219,48 @@
           <div class="confetti-piece"></div>
         </td>
         <td>16+</td>
-        <td class="yes">Yes, free (Enterprise plug-in optional)</td>
-        <td class="maybe">API with approved devs only</td>
-        <td class="yes">Strong</td>
-        <td class="yes">Good</td>
-        <td class="yes">Yes</td>
-        <td class="growing">Unknown / Growing</td>
-        <td class="maybe">Strong Contender</td>
+        <td><span class="stars">★★★★★</span></td>
+        <td><span class="stars">★★★★☆</span></td>
+        <td><span class="stars">★★★★☆</span></td>
+        <td>Strong Contender</td>
       </tr>
-      <tr>
+      <tr class="place-2">
+        <td><span class="place-badge place-2">2nd</span></td>
         <td class="icon">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Skynet_Logo.svg/1024px-Skynet_Logo.svg.png" alt="Skynet Logo" style="width:24px; height:24px;" />
-          Skynet
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Logo" />
+          Discord
         </td>
         <td>13+</td>
-        <td class="yes">Basic</td>
-        <td class="no">Limited</td>
-        <td class="maybe">Moderate</td>
-        <td class="no">Limited</td>
-        <td class="yes">Yes</td>
-        <td class="no">Small</td>
-        <td class="no">Needs More Features</td>
+        <td><span class="stars">★★★★★</span></td>
+        <td><span class="stars">★★☆☆☆</span></td>
+        <td><span class="stars">★★★☆☆</span></td>
+        <td>Target</td>
       </tr>
-      <tr>
+      <tr class="place-3">
+        <td><span class="place-badge place-3">3rd</span></td>
         <td class="icon">
           <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Logo" />
           Telegram
         </td>
         <td>13+</td>
-        <td class="maybe">Voice chats but limited</td>
-        <td class="yes">Yes (Bot API)</td>
-        <td class="yes">Strong</td>
-        <td class="maybe">Basic groups</td>
-        <td class="yes">Yes</td>
-        <td class="yes">Large</td>
-        <td class="no">Not Full Discord Replacement</td>
+        <td><span class="stars">★★★☆☆</span></td>
+        <td><span class="stars">★★★★☆</span></td>
+        <td><span class="stars">★★★★☆</span></td>
+        <td>Not Full Replacement</td>
       </tr>
-      <tr>
+      <tr class="place-4">
+        <td><span class="place-badge place-4">4th</span></td>
         <td class="icon">
           <img src="https://cdn.iconscout.com/icon/free/png-256/guilded-282866.png" alt="Guilded Logo" />
           Guilded
         </td>
         <td>13+</td>
-        <td class="yes">Yes</td>
-        <td class="yes">Yes</td>
-        <td class="maybe">Moderate</td>
-        <td class="yes">Great</td>
-        <td class="yes">Yes</td>
-        <td class="maybe">Medium</td>
-        <td class="maybe">Potential</td>
-      </tr>
-      <tr>
-        <td class="icon">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Mastodon_Logo_%282021%29.svg/1024px-Mastodon_Logo_%282021%29.svg.png" alt="Mastodon Logo" />
-          Mastodon
-        </td>
-        <td>13+</td>
-        <td class="no">No</td>
-        <td class="yes">Yes (Open API)</td>
-        <td class="yes">Very Strong</td>
-        <td class="no">Limited</td>
-        <td class="yes">Yes</td>
-        <td class="no">Small</td>
-        <td class="no">Not Built for Chat</td>
+        <td><span class="stars">★★☆☆☆</span></td>
+        <td><span class="stars empty">★★☆☆☆</span></td>
+        <td><span class="stars empty">★★☆☆☆</span></td>
+        <td>Will Never Replace</td>
       </tr>
     </tbody>
   </table>
-
-  <script>
-    // On hover show confetti animation continuously for Krynet's name
-    const krynetRow = document.getElementById('krynet-row');
-    const confettiPieces = krynetRow.querySelectorAll('.confetti-piece');
-
-    krynetRow.addEventListener('mouseenter', () => {
-      confettiPieces.forEach((piece, i) => {
-        piece.style.animationPlayState = 'running';
-      });
-    });
-
-    krynetRow.addEventListener('mouseleave', () => {
-      confettiPieces.forEach((piece, i) => {
-        piece.style.animationPlayState = 'paused';
-      });
-    });
-
-    // Start paused
-    confettiPieces.forEach(piece => {
-      piece.style.animationPlayState = 'paused';
-    });
-  </script>
 </body>
 </html>
