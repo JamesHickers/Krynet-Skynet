@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #121212;
+      color: #eee;
+      margin: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      max-width: 1000px;
+      border-collapse: collapse;
+      background: #1e1e1e;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    thead {
+      background: #2a2a2a;
+    }
+
+    th, td {
+      padding: 1rem 1.25rem;
+      text-align: center;
+      border-bottom: 1px solid #333;
+      vertical-align: middle;
+    }
+
+    th {
+      font-weight: 700;
+    }
+
+    tbody tr:hover {
+      background: #333;
+    }
+
+    td.icon {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      justify-content: center;
+      position: relative;
+    }
+
+    td.icon img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .place-badge {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      min-width: 70px;
+      user-select: none;
+    }
+
+    .place-1 {
+      background: #1e88e5;
+      color: white;
+    }
+
+    .place-2 {
+      background: #fbc02d;
+      color: #222;
+    }
+
+    .place-3 {
+      background: #b0bec5;
+      color: #222;
+    }
+
+    .place-4 {
+      background: #6d4c41;
+      color: #eee;
+    }
+
+    .place-5 {
+      background: #5d4037;
+      color: #eee;
+    }
+
+    tr.winner {
+      font-weight: 900;
+      position: relative;
+      cursor: pointer;
+    }
+
+    @keyframes rainbow {
+      0%, 100% { color: #ff0000; text-shadow: 0 0 8px #ff0000; }
+      14% { color: #ff7f00; text-shadow: 0 0 8px #ff7f00; }
+      28% { color: #ffff00; text-shadow: 0 0 8px #ffff00; }
+      42% { color: #00ff00; text-shadow: 0 0 8px #00ff00; }
+      56% { color: #0000ff; text-shadow: 0 0 8px #0000ff; }
+      70% { color: #4b0082; text-shadow: 0 0 8px #4b0082; }
+      84% { color: #8b00ff; text-shadow: 0 0 8px #8b00ff; }
+    }
+
+    tr.winner td.icon span.name {
+      font-size: 1.2rem;
+      font-weight: 900;
+      animation: rainbow 4s linear infinite;
+      display: inline-block;
+      user-select: none;
+    }
+
+    tr.winner td.icon span.crown {
+      font-size: 1.2rem;
+      margin-left: 6px;
+      user-select: none;
+    }
+
+    tr.winner td.icon img {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 0 10px #1e88e5aa;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+      animation: confetti-fall 1.5s linear infinite;
+    }
+
+    .confetti-piece:nth-of-type(1) { left: 10px; background: #f44336; animation-delay: 0s; }
+    .confetti-piece:nth-of-type(2) { left: 20px; background: #4caf50; animation-delay: 0.2s; }
+    .confetti-piece:nth-of-type(3) { left: 30px; background: #2196f3; animation-delay: 0.4s; }
+    .confetti-piece:nth-of-type(4) { left: 40px; background: #ff9800; animation-delay: 0.6s; }
+    .confetti-piece:nth-of-type(5) { left: 50px; background: #9c27b0; animation-delay: 0.8s; }
+
+    @keyframes confetti-fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(50px) rotate(360deg); opacity: 0; }
+    }
+
+    tr.winner:hover .confetti-piece {
+      opacity: 1;
+      animation-play-state: running !important;
+    }
+
+    tr.winner .confetti-piece {
+      animation-play-state: paused;
+    }
+
+    .stars {
+      color: #fbc02d;
+      font-size: 1.1rem;
+      user-select: none;
+    }
+
+    .stars.empty {
+      color: #555;
+    }
