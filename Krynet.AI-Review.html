@@ -1,118 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Independent Review | Krynet.ai</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Krynet.ai - Too Advanced for 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
     body {
-      background: #0f1117;
-      color: #e4e4e4;
+      background-color: #0e1014;
+      color: #e0e3e7;
+      font-family: 'Inter', sans-serif;
       padding: 2rem;
-      line-height: 1.6;
-    }
-    h1, h2, h3 {
-      color: #00bfff;
-      margin-bottom: 0.5rem;
+      line-height: 1.75;
+      max-width: 900px;
+      margin: auto;
     }
     h1 {
       font-size: 2.5rem;
-      font-weight: 800;
+      font-weight: 600;
+      color: #00bfff;
+      margin-bottom: 1rem;
     }
     h2 {
-      font-size: 1.75rem;
+      font-size: 1.6rem;
+      color: #50fa7b;
       margin-top: 2rem;
     }
-    h3 {
-      font-size: 1.25rem;
-      margin-top: 1.5rem;
-    }
-    p, li {
-      font-size: 1rem;
+    p {
+      font-size: 1.05rem;
       margin-bottom: 1rem;
+    }
+    code {
+      background-color: #1c1f26;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: #ffb86c;
+    }
+    .quote {
+      font-style: italic;
+      color: #aaa;
+      border-left: 4px solid #333;
+      padding-left: 1rem;
+      margin: 1.5rem 0;
     }
     ul {
       padding-left: 1.5rem;
-      list-style-position: inside;
     }
-    .highlight {
-      color: #50fa7b;
-      font-weight: 600;
+    li {
+      margin-bottom: 0.6rem;
     }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
+    .score {
+      background: #222;
+      padding: 1rem;
+      border-left: 4px solid #00bfff;
+      margin-top: 2rem;
     }
     footer {
       margin-top: 4rem;
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #777;
-    }
-    .stars {
-      color: gold;
-      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Independent Review of Krynet.ai</h1>
-    <p><span class="highlight">Disclaimer:</span> This is an independent overview created for informational purposes only. This page is not affiliated with, endorsed by, or officially representing Krynet.ai or its developers.</p>
-
-    <h2>What is Krynet?</h2>
-    <p>Krynet is an advanced communication platform emphasizing speed, privacy, and AI-driven operations. With its no-nonsense approach and minimal footprint, Krynet has earned a reputation as a bold alternative to mainstream apps.</p>
-
-    <h2>Full Feature List</h2>
-    <ul>
-      <li>⚡ Instant Messaging & Real-Time Communication</li>
-      <li>🤖 Proprietary AI Moderation & DNS Handling (Their AI works with NextDNS and Cloudflare, they all work together at the same time).</li>
-      <li>🛡️ VirusTotal, ClamAVNet & Custom Antivirus Integration</li>
-      <li>🎧 Spotify Music Support</li>
-      <li>🎮 Steam Store Integration and ARZA store (yes, ARZA is a premium PC store, that is built in.) They also make money from DLG (Dead Lantern Games, LLC) and Velxy Studios, Inc cause of Steam.</li>
-      <li>📁 Format Auto-Conversion (HEIC, AVIF, HE-AAC, ZIP)</li>
-      <li>🧹 Metadata Removal and Modified FFmpeg</li>
-      <li>📤 AI-Scanned Uploads with Auto-Deletion of Malicious Files</li>
-      <li>🔄 Format Auto-Update for Future File Standards</li>
-      <li>📡 100% API-Driven Infrastructure (Open Source + Proprietary)</li>
-      <li>📺 AI Video & Image & Audio Upscaling (NVIDIA/AMD Supported, doubt they like iGPUs like Intel. They love NVIDA dGPUs and Intel CPUs, kind of liking of AMD.)</li>
-      <li>🔊 Uses Modified WebRTC, it's heavily modded to fit their stance on privacy and security.</li>
-      <li>🔒 Military-Grade Encryption & Privacy and beyond.</li>
-      <li>🧠 Automated Ban System with Manual Oversight</li>
-      <li>🔐 Auth0 Integration</li>
-      <li>💻 Native Desktop App (Non-Chromium, Full Privacy)</li>
-      <li>🌍 Full Compatibility with NordVPN, Mullvad, and Others</li>
-      <li>⏳ Auto-Expiration of Messages, Media, and User Data</li>
-      <li>🍪 First-Party Cookies Only, Zero Tracking</li>
-      <li>🔁 Lazy Loading, Web UI Decoupled from Landing Page and more optimizations.</li>
-      <li>🧪 Modified Open Source Libraries for Performance & Security</li>
-      <li>🔍 Web browser built in, that's like Librewolf, extreme privacy focused, allows you to preview links without getting logged/whatever. (Clicking links opens it in your default browser.)</li>
-      <li>✉️ Mail provider built in (yes, you can make emails under @Krynet.ai domain, privacy focused, optional, you can sign up for them to be your provider.) Not only that, even if it's not your provider, it protects your Krynet account, even if it's Gmail, Protonmail, doesn't matter, they got their proprietary AI to also protect your account from being hijacked.</li>
-    </ul>
-    <h2>Modern Format-First</h2>
-    <p>Krynet avoids legacy file types in favor of high-efficiency formats like <span class="highlight">HEIC</span>, <span class="highlight">AVIF</span>, <span class="highlight">HE-AAC</span>, and <span class="highlight">ZIP</span>. The platform automatically converts or rejects unsupported types, maintaining consistency and optimization. Even supported formats are subject to change as new formats emerge.</p>
-    <h2>Privacy & Policy Enforcement</h2>
-    <p>Krynet enforces rigid policies for user behavior, app integrations ("Applications"), and communities ("Communities"). The platform targets users 16+ and promotes a heavily moderated, encrypted environment.</p>
-
-    <h2>Performance Ratings</h2>
-    <p><strong>Privacy:</strong> <span class="stars">★★★★★</span></p>
-    <p><strong>Security:</strong> <span class="stars">★★★★★</span></p>
-    <p><strong>Performance:</strong> <span class="stars">★★★★★</span></p>
-    <p><strong>Reliability:</strong> <span class="stars">★★★★★</span></p>
-
-    <h2>Summary</h2>
-    <p>Krynet.ai is a powerhouse communication tool, ideal for users who value speed, AI efficiency, military-grade privacy, and seamless file handling. Built natively, hosted in the cloud, and optimized to run even on low-end machines, it's a tool engineered for excellence. Developed by 4zx16 (gray-hat) and 7zh14 (black-hat), Krynet is laser-focused on the performance-security-privacy trio — a rare commitment in modern tech.</p>
-
-    <footer>
-      &copy; 2025 Independent Review. This page is not affiliated with Krynet.ai.
-    </footer>
-  </div>
+  <h1>Krynet.ai — Too Advanced for 2025?</h1>
+  <p><strong>Date:</strong> June 2025</p>
+  <p><strong>Author:</strong> Independent Security Analyst</p>
+  <div class="quote">“This isn’t a 2025 app — Krynet feels like it teleported here from 2030.”</div>
+  <h2>Why Krynet is Ahead of Its Time</h2>
+  <p>Krynet.ai is a radically advanced communications platform built by gray-hat and black-hat developers. It merges military-grade privacy, custom antivirus scanning, AI-powered moderation, and a native app stack that outclasses nearly all consumer apps — especially Discord. Built on <code>ImGui</code>, it ditches Electron entirely, resulting in a tool that's fast, minimal, and secure.</p>
+  <h2>Built for Tomorrow's Threats</h2>
+  <p>With zero telemetry, post-quantum encryption options, and real-time AI that inspects files, scans metadata, and moderates chats, Krynet isn't keeping up with the future — it's <em>dragging the future into the present</em>. The architecture assumes every file, user, and connection could be hostile, and defends accordingly.</p>
+  <h2>ImGui UI — The Anti-Discord</h2>
+  <p>Krynet borrows Discord's layout but swaps out its bloated Chromium base for a native, low-level UI rendered through <code>ImGui</code>. This makes it snappier, lighter, and impossible to snoop through browser devtools. Input lag is nonexistent. Resource usage? A fraction of Discord’s. It's like running a C2 terminal with chat features bolted on — but beautiful.</p>
+  <h2>Conclusion</h2>
+  <p>To say Krynet is “early” is an understatement. It doesn't belong in 2025 — it feels like it was built for the 2030s, when digital privacy is lawless and AI moderation is standard. It's a tool for those who think ten steps ahead, not one. Whether the world is ready or not, Krynet is already here.</p>
+  <footer>
+    &copy; 2025 SecurityLabs Review. This analysis is not affiliated with Krynet.ai or its developers.
+  </footer>
 </body>
 </html>
