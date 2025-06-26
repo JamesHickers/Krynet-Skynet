@@ -1,72 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Discord Replacement Threat List - Ranked</title>
+  <title>Discord Replacement Threat List — Ranked + Reviews</title>
   <style>
-    /* Base styles */
+    /* Reset & base */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #121212;
       color: #eee;
       margin: 20px;
+      line-height: 1.5;
     }
-
     h1 {
       text-align: center;
       margin-bottom: 30px;
       font-weight: 700;
       letter-spacing: 1px;
+      user-select: none;
     }
 
     /* Table styles */
     table {
       width: 100%;
       border-collapse: separate;
-      border-spacing: 0 15px;
+      border-spacing: 0 12px;
       background: #1e1e1e;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
     }
-
     thead tr {
       background: #282828;
       color: #bbb;
       text-transform: uppercase;
       font-weight: 600;
       font-size: 0.9rem;
+      user-select: none;
     }
-
     th, td {
-      padding: 15px 20px;
-      text-align: left;
+      padding: 14px 20px;
       vertical-align: middle;
+      text-align: left;
     }
 
-    /* Place badge styling */
+    /* Place badges */
     .place-badge {
       display: inline-block;
       font-weight: 700;
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 25px;
       color: white;
-      min-width: 50px;
+      min-width: 52px;
       text-align: center;
       font-size: 1rem;
       user-select: none;
     }
-
-    .place-1 {
-      background: linear-gradient(45deg, #ffbc00, #ff8000);
-    }
-    .place-2 {
-      background: linear-gradient(45deg, #c0c0c0, #909090);
-    }
-    .place-3 {
-      background: linear-gradient(45deg, #cd7f32, #a55c2b);
-    }
+    .place-1 { background: linear-gradient(45deg, #ffbc00, #ff8000); }
+    .place-2 { background: linear-gradient(45deg, #c0c0c0, #909090); }
+    .place-3 { background: linear-gradient(45deg, #cd7f32, #a55c2b); }
     .place-4, .place-5 {
       background: #555;
       opacity: 0.8;
@@ -76,38 +69,37 @@
     td.icon {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
-
     td.icon img {
       max-width: 36px;
       max-height: 36px;
       object-fit: contain;
       border-radius: 6px;
-      box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
       user-select: none;
     }
-
     td.icon .name {
       font-weight: 600;
       font-size: 1.1rem;
+      white-space: nowrap;
     }
-
-    /* Crown emoji for winner */
     .crown {
       margin-left: 6px;
       font-size: 1.2rem;
+      user-select: none;
     }
 
-    /* Stars styling */
+    /* Stars */
     .stars {
       color: #ffcc00;
       font-size: 1.1rem;
       letter-spacing: 2px;
       user-select: none;
+      white-space: nowrap;
     }
 
-    /* Confetti pieces */
+    /* Confetti */
     .confetti-piece {
       width: 6px;
       height: 6px;
@@ -115,40 +107,65 @@
       border-radius: 2px;
       margin: 0 1px;
       animation: confetti-fall 1.5s infinite;
+      user-select: none;
     }
-
     @keyframes confetti-fall {
       0%, 100% {transform: translateY(0);}
       50% {transform: translateY(4px);}
     }
 
-    /* Responsive tweaks */
+    /* Review snippet toggle */
+    .review-toggle {
+      cursor: pointer;
+      user-select: none;
+      font-weight: 600;
+      color: #aaa;
+      font-size: 0.9rem;
+      margin-top: 4px;
+      display: inline-block;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+    .review-toggle:hover {
+      color: #ffbc00;
+    }
+    .review-text {
+      max-height: 0;
+      overflow: hidden;
+      color: #ddd;
+      font-size: 0.9rem;
+      margin-top: 6px;
+      transition: max-height 0.5s ease;
+    }
+    .review-text.open {
+      max-height: 300px;
+    }
+
+    /* Responsive */
     @media (max-width: 720px) {
       table, thead, tbody, th, td, tr {
         display: block;
       }
-      thead tr {
-        display: none;
-      }
+      thead tr { display: none; }
       tr {
         margin-bottom: 20px;
         background: #222;
         border-radius: 8px;
-        padding: 15px;
+        padding: 14px 16px;
       }
       td {
-        padding-left: 50%;
+        padding-left: 45%;
         position: relative;
         text-align: left;
       }
       td::before {
         position: absolute;
-        top: 15px;
-        left: 20px;
-        width: 45%;
+        top: 14px;
+        left: 16px;
+        width: 40%;
         white-space: nowrap;
         font-weight: 600;
-        color: #aaa;
+        color: #999;
         user-select: none;
       }
       td:nth-of-type(1)::before { content: "Place"; }
@@ -159,92 +176,151 @@
       td:nth-of-type(6)::before { content: "Security"; }
       td:nth-of-type(7)::before { content: "Could Replace Discord?"; }
       td.icon {
-        padding-left: 20px;
+        padding-left: 16px;
+      }
+      .review-text {
+        font-size: 0.85rem;
       }
     }
   </style>
 </head>
 <body>
-  <h1>Discord Replacement Threat List — Ranked</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Place</th>
-        <th>Platform</th>
-        <th>Age Limit</th>
-        <th>Performance</th>
-        <th>Privacy</th>
-        <th>Security</th>
-        <th>Could Replace Discord?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="winner place-1" id="krynet-row">
-        <td><span class="place-badge place-1">1st</span></td>
-        <td class="icon">
-          <img src="krynet-icon.png" alt="Krynet Logo" />
-          <span class="name">Krynet</span><span class="crown">👑</span>
-          <div class="confetti-piece"></div>
-          <div class="confetti-piece"></div>
-          <div class="confetti-piece"></div>
-          <div class="confetti-piece"></div>
-          <div class="confetti-piece"></div>
-        </td>
-        <td>16+</td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td>Strong Contender</td>
-      </tr>
-      <tr class="place-2">
-        <td><span class="place-badge place-2">2nd</span></td>
-        <td class="icon">
-          <img src="discord.png" alt="Discord Logo" />
-          <span class="name">Discord</span>
-        </td>
-        <td>13+</td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★☆☆☆</span></td>
-        <td><span class="stars">★★★☆☆</span></td>
-        <td>Target</td>
-      </tr>
-      <tr class="place-3">
-        <td><span class="place-badge place-3">3rd</span></td>
-        <td class="icon">
-          <img src="Telegram_logo.svg" alt="Telegram Logo" />
-          <span class="name">Telegram</span>
-        </td>
-        <td>13+</td>
-        <td><span class="stars">★★★☆☆</span></td>
-        <td><span class="stars">★★★★☆</span></td>
-        <td><span class="stars">★★★★☆</span></td>
-        <td>Not Full Replacement</td>
-      </tr>
-      <tr class="place-4">
-        <td><span class="place-badge place-4">4th</span></td>
-        <td class="icon">
-          <img src="Guilded.png" alt="Guilded Logo" />
-          <span class="name">Guilded</span>
-        </td>
-        <td>13+</td>
-        <td><span class="stars">★★☆☆☆</span></td>
-        <td><span class="stars">★★☆☆☆</span></td>
-        <td><span class="stars">★★☆☆☆</span></td>
-        <td>Will Never Replace</td>
-      </tr>
-      <tr class="place-5">
-        <td><span class="place-badge place-5">5th</span></td>
-        <td class="icon">
-          <img src="skynet.png" alt="Skynet Logo" />
-          <span class="name">Skynet</span>
-        </td>
-        <td>13+</td>
-        <td><span class="stars">★★★☆☆</span></td>
-        <td><span class="stars">★☆☆☆☆</span></td>
-        <td><span class="stars">★★☆☆☆</span></td>
-        <td>Will Never Replace</td>
-      </tr>
-    </tbody>
-  </table>
+
+<h1>Discord Replacement Threat List — Ranked + Reviews</h1>
+
+<table aria-label="Discord replacement platform rankings with short reviews">
+  <thead>
+    <tr>
+      <th scope="col">Place</th>
+      <th scope="col">Platform</th>
+      <th scope="col">Age Limit</th>
+      <th scope="col">Performance</th>
+      <th scope="col">Privacy</th>
+      <th scope="col">Security</th>
+      <th scope="col">Could Replace Discord?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="winner place-1" id="krynet-row">
+      <td><span class="place-badge place-1">1st</span></td>
+      <td class="icon" scope="row">
+        <img src="krynet-icon.png" alt="Krynet Logo" />
+        <span class="name">Krynet</span><span class="crown">👑</span>
+        <div class="confetti-piece"></div><div class="confetti-piece"></div><div class="confetti-piece"></div><div class="confetti-piece"></div><div class="confetti-piece"></div>
+      </td>
+      <td>16+</td>
+      <td><span class="stars">★★★★★</span></td>
+      <td><span class="stars">★★★★★</span></td>
+      <td><span class="stars">★★★★★</span></td>
+      <td>Strong Contender</td>
+    </tr>
+    <tr>
+      <td colspan="7" style="background:#222; border-radius: 0 0 10px 10px; padding: 12px 20px;">
+        <span class="review-toggle" tabindex="0" role="button" aria-expanded="false" aria-controls="review-krynet">Show Review</span>
+        <div class="review-text" id="review-krynet" aria-live="polite" aria-hidden="true">
+          Krynet is built for the future — military-grade privacy, zero telemetry, and AI moderation. Runs lightweight native UI with no Electron bloat. A true powerhouse for privacy heads and pros.
+        </div>
+      </td>
+    </tr>
+    <tr class="place-2">
+      <td><span class="place-badge place-2">2nd</span></td>
+      <td class="icon" scope="row">
+        <img src="discord.png" alt="Discord Logo" />
+        <span class="name">Discord</span>
+      </td>
+      <td>13+</td>
+      <td><span class="stars">★★★★★</span></td>
+      <td><span class="stars">★★☆☆☆</span></td>
+      <td><span class="stars">★★★☆☆</span></td>
+      <td>Target</td>
+    </tr>
+    <tr>
+      <td colspan="7" style="background:#222; border-radius: 0 0 10px 10px; padding: 12px 20px;">
+        <span class="review-toggle" tabindex="0" role="button" aria-expanded="false" aria-controls="review-discord">Show Review</span>
+        <div class="review-text" id="review-discord" aria-live="polite" aria-hidden="true">
+          Discord’s solid but bloated. Good performance but sketchy privacy and security. Still the giant everyone targets but privacy pros are looking elsewhere.
+        </div>
+      </td>
+    </tr>
+    <tr class="place-3">
+      <td><span class="place-badge place-3">3rd</span></td>
+      <td class="icon" scope="row">
+        <img src="Telegram_logo.svg" alt="Telegram Logo" />
+        <span class="name">Telegram</span>
+      </td>
+      <td>13+</td>
+      <td><span class="stars">★★★☆☆</span></td>
+      <td><span class="stars">★★★★☆</span></td>
+      <td><span class="stars">★★★★☆</span></td>
+      <td>Not Full Replacement</td>
+    </tr>
+    <tr>
+      <td colspan="7" style="background:#222; border-radius: 0 0 10px 10px; padding: 12px 20px;">
+        <span class="review-toggle" tabindex="0" role="button" aria-expanded="false" aria-controls="review-telegram">Show Review</span>
+        <div class="review-text" id="review-telegram" aria-live="polite" aria-hidden="true">
+          Telegram is solid privacy-wise, but lacks full Discord features and sometimes feels limited for community power users.
+        </div>
+      </td>
+    </tr>
+    <tr class="place-4">
+      <td><span class="place-badge place-4">4th</span></td>
+      <td class="icon" scope="row">
+        <img src="Guilded.png" alt="Guilded Logo" />
+        <span class="name">Guilded</span>
+      </td>
+      <td>13+</td>
+      <td><span class="stars">★★☆☆☆</span></td>
+      <td><span class="stars">★★☆☆☆</span></td>
+      <td><span class="stars">★★☆☆☆</span></td>
+      <td>Will Never Replace</td>
+    </tr>
+    <tr>
+      <td colspan="7" style="background:#222; border-radius: 0 0 10px 10px; padding: 12px 20px;">
+        <span class="review-toggle" tabindex="0" role="button" aria-expanded="false" aria-controls="review-guilded">Show Review</span>
+        <div class="review-text" id="review-guilded" aria-live="polite" aria-hidden="true">
+          Guilded has some neat gaming features but performance and privacy hold it back big time. Not a real Discord killer.
+        </div>
+      </td>
+    </tr>
+    <tr class="place-5">
+      <td><span class="place-badge place-5">5th</span></td>
+      <td class="icon" scope="row">
+        <img src="skynet.png" alt="Skynet Logo" />
+        <span class="name">Skynet</span>
+      </td>
+      <td>13+</td>
+      <td><span class="stars">★★★☆☆</span></td>
+      <td><span class="stars">★☆☆☆☆</span></td>
+      <td><span class="stars">★★☆☆☆</span></td>
+      <td>Will Never Replace</td>
+    </tr>
+    <tr>
+      <td colspan="7" style="background:#222; border-radius: 0 0 10px 10px; padding: 12px 20px;">
+        <span class="review-toggle" tabindex="0" role="button" aria-expanded="false" aria-controls="review-skynet">Show Review</span>
+        <div class="review-text" id="review-skynet" aria-live="polite" aria-hidden="true">
+          Skynet’s UI is slick but privacy and security are major red flags — sells your data, uses loose CSP, and relies on third-party file hosts.
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<script>
+  document.querySelectorAll('.review-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => toggleReview(toggle));
+    toggle.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleReview(toggle);
+      }
+    });
+  });
+  function toggleReview(toggle) {
+    const review = document.getElementById(toggle.getAttribute('aria-controls'));
+    const isOpen = review.classList.toggle('open');
+    toggle.textContent = isOpen ? 'Hide Review' : 'Show Review';
+    toggle.setAttribute('aria-expanded', isOpen);
+    review.setAttribute('aria-hidden', !isOpen);
+  }
+</script>
 </body>
 </html>
