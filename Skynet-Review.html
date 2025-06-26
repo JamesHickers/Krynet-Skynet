@@ -5,22 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SKYNET Platform Review</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
     body {
-      background: #121212;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1a0000;
+      color: #ff4c4c;
+      font-family: 'Share Tech Mono', monospace;
       max-width: 900px;
       margin: 2rem auto;
       padding: 0 1rem;
       line-height: 1.6;
+      user-select: none;
+      position: relative;
     }
     h1, h2 {
-      color: #4caf50;
+      color: #ff1a1a;
       margin-bottom: 0.5rem;
+      text-shadow: 0 0 8px #ff0000;
     }
     h1 {
-      border-bottom: 2px solid #4caf50;
+      border-bottom: 2px solid #ff0000;
       padding-bottom: 0.3rem;
+      font-size: 2.5rem;
     }
     ul {
       list-style: none;
@@ -29,37 +35,93 @@
     }
     li {
       margin-bottom: 0.8rem;
+      color: #ff6666;
     }
     .stars {
       font-size: 2rem;
-      color: #ffb400;
+      color: #ffcc00;
       user-select: none;
       letter-spacing: 0.1rem;
       margin-left: 0.5rem;
       vertical-align: middle;
+      text-shadow: 0 0 6px #cc9900;
     }
     .section {
       margin-bottom: 2rem;
     }
     .section p {
-      background: #222;
+      background: #330000;
       padding: 1rem;
       border-radius: 8px;
       font-size: 1rem;
-      color: #ccc;
+      color: #ff9999;
+      border: 1px solid #660000;
+      box-shadow: 0 0 15px #660000 inset;
     }
     footer {
       text-align: center;
       font-size: 0.85rem;
-      color: #555;
+      color: #880000;
       margin-top: 4rem;
-      border-top: 1px solid #333;
+      border-top: 1px solid #660000;
       padding-top: 1rem;
       font-style: italic;
+      text-shadow: 0 0 8px #440000;
+    }
+    #warning-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(270deg, #ff0000, #aa0000, #ff0000);
+      background-size: 600% 600%;
+      animation: warningGlow 5s ease infinite;
+      color: #fff;
+      font-weight: bold;
+      font-family: 'Share Tech Mono', monospace;
+      padding: 0.5rem;
+      text-align: center;
+      z-index: 10000;
+      user-select: none;
+      letter-spacing: 0.15rem;
+      text-transform: uppercase;
+      box-shadow: 0 0 15px #ff0000;
+    }
+    @keyframes warningGlow {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    #tracker {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 1px;
+      height: 1px;
+      background: #ff0000;
+      opacity: 0.1;
+      pointer-events: none;
+      animation: pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% {opacity: 0.1;}
+      50% {opacity: 0.6;}
+    }
+    a {
+      color: #ff6666;
+      text-decoration: underline;
+    }
+    a:hover {
+      color: #ff0000;
+      text-shadow: 0 0 8px #ff0000;
     }
   </style>
 </head>
 <body>
+
+  <div id="warning-bar">
+    WARNING: THIS PLATFORM SELLS USER DATA & TRACKS YOUR ACTIVITY
+  </div>
 
   <h1>SKYNET Platform Review</h1>
 
@@ -67,8 +129,9 @@
     <h2>Overview</h2>
     <p>
       SKYNET is a messaging and voice chat platform featuring APIs for account management, direct messaging, and voice sessions.
+      Designed explicitly to compete with Krynet.ai, it aggressively sells user data to bankroll its growth.
       The platform includes a web-based DM client with media attachments, basic moderation, and user profile handling.
-      It aims for a versatile, modern chat experience with some neat features, but shows cracks when it comes to security and privacy.
+      While offering a modern chat experience, it prioritizes profit over user safety and security, exposing serious risks.
     </p>
   </div>
 
@@ -76,7 +139,7 @@
     <h2>Performance</h2>
     <p>
       SKYNET runs smooth with an intuitive UI and decent API response times in local development. The use of localStorage for caching messages is practical but risks data loss on clearing browser storage.
-      Reliance on external services like catbox.moe for file uploads may introduce latency and dependency.
+      Reliance on external services like <a href="https://catbox.moe" target="_blank" rel="noopener noreferrer">catbox.moe</a> for file uploads may introduce latency and dependency.
     </p>
   </div>
 
@@ -84,6 +147,8 @@
     <h2>Privacy</h2>
     <p>
       Privacy is a weak spot. User data is stored mostly client-side without clear encryption, and files are uploaded to a third-party (catbox.moe) without privacy guarantees.
+      Built on Chromium, SKYNET inherits its broad attack surface and frequent vulnerabilities.
+      The platform openly sells user data as part of its revenue strategy to grow and compete with Krynet.ai.
       The Content-Security-Policy includes 'unsafe-inline' and 'unsafe-eval', opening doors for script injection attacks.
       There's no sign of end-to-end encryption or advanced user data protections.
     </p>
@@ -93,6 +158,7 @@
     <h2>Security</h2>
     <p>
       Security is basic at best. Client-side moderation can be bypassed, and banning users only happens locally without server enforcement.
+      Using Chromium as the app’s foundation introduces a broad attack surface due to its complex codebase and frequent zero-days.
       CORS is patched via a proxy (corsproxy.io), which may expose users to additional risk.
       The API authentication model is token-based, but no info on token expiry or refresh, nor multi-factor auth.
       Content-Security-Policy is too loose to defend against common attacks effectively.
@@ -139,6 +205,8 @@
   <footer>
     Reviewed by Bloodware, Incorporated — 2025
   </footer>
+
+  <div id="tracker"></div>
 
 </body>
 </html>
