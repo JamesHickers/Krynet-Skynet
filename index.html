@@ -1,10 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Discord Replacement Threat List - Ranked</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Base styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #eee;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* Table styles */
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 15px;
+      background: #1e1e1e;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    thead tr {
+      background: #282828;
+      color: #bbb;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 15px 20px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    /* Place badge styling */
+    .place-badge {
+      display: inline-block;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 25px;
+      color: white;
+      min-width: 50px;
+      text-align: center;
+      font-size: 1rem;
+      user-select: none;
+    }
+
+    .place-1 {
+      background: linear-gradient(45deg, #ffbc00, #ff8000);
+    }
+    .place-2 {
+      background: linear-gradient(45deg, #c0c0c0, #909090);
+    }
+    .place-3 {
+      background: linear-gradient(45deg, #cd7f32, #a55c2b);
+    }
+    .place-4, .place-5 {
+      background: #555;
+      opacity: 0.8;
+    }
+
+    /* Platform cell */
+    td.icon {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    td.icon img {
+      max-width: 36px;
+      max-height: 36px;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+      user-select: none;
+    }
+
+    td.icon .name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    /* Crown emoji for winner */
+    .crown {
+      margin-left: 6px;
+      font-size: 1.2rem;
+    }
+
+    /* Stars styling */
+    .stars {
+      color: #ffcc00;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+
+    /* Confetti pieces */
+    .confetti-piece {
+      width: 6px;
+      height: 6px;
+      background: #ffcc00;
+      border-radius: 2px;
+      margin: 0 1px;
+      animation: confetti-fall 1.5s infinite;
+    }
+
+    @keyframes confetti-fall {
+      0%, 100% {transform: translateY(0);}
+      50% {transform: translateY(4px);}
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 720px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        display: none;
+      }
+      tr {
+        margin-bottom: 20px;
+        background: #222;
+        border-radius: 8px;
+        padding: 15px;
+      }
+      td {
+        padding-left: 50%;
+        position: relative;
+        text-align: left;
+      }
+      td::before {
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: 600;
+        color: #aaa;
+        user-select: none;
+      }
+      td:nth-of-type(1)::before { content: "Place"; }
+      td:nth-of-type(2)::before { content: "Platform"; }
+      td:nth-of-type(3)::before { content: "Age Limit"; }
+      td:nth-of-type(4)::before { content: "Performance"; }
+      td:nth-of-type(5)::before { content: "Privacy"; }
+      td:nth-of-type(6)::before { content: "Security"; }
+      td:nth-of-type(7)::before { content: "Could Replace Discord?"; }
+      td.icon {
+        padding-left: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>Discord Replacement Threat List — Ranked</h1>
@@ -24,7 +182,7 @@
       <tr class="winner place-1" id="krynet-row">
         <td><span class="place-badge place-1">1st</span></td>
         <td class="icon">
-          <img src="krynet-icon.png" alt="Krynet Logo">
+          <img src="krynet-icon.png" alt="Krynet Logo" />
           <span class="name">Krynet</span><span class="crown">👑</span>
           <div class="confetti-piece"></div>
           <div class="confetti-piece"></div>
@@ -41,7 +199,7 @@
       <tr class="place-2">
         <td><span class="place-badge place-2">2nd</span></td>
         <td class="icon">
-          <img src="discord.png" alt="Discord Logo">
+          <img src="discord.png" alt="Discord Logo" />
           <span class="name">Discord</span>
         </td>
         <td>13+</td>
@@ -53,7 +211,7 @@
       <tr class="place-3">
         <td><span class="place-badge place-3">3rd</span></td>
         <td class="icon">
-          <img src="Telegram_logo.svg" alt="Telegram Logo">
+          <img src="Telegram_logo.svg" alt="Telegram Logo" />
           <span class="name">Telegram</span>
         </td>
         <td>13+</td>
@@ -65,7 +223,7 @@
       <tr class="place-4">
         <td><span class="place-badge place-4">4th</span></td>
         <td class="icon">
-          <img src="Guilded.png" alt="Guilded Logo">
+          <img src="Guilded.png" alt="Guilded Logo" />
           <span class="name">Guilded</span>
         </td>
         <td>13+</td>
@@ -77,7 +235,7 @@
       <tr class="place-5">
         <td><span class="place-badge place-5">5th</span></td>
         <td class="icon">
-          <img src="skynet.png" alt="Skynet Logo">
+          <img src="skynet.png" alt="Skynet Logo" />
           <span class="name">Skynet</span>
         </td>
         <td>13+</td>
@@ -88,7 +246,5 @@
       </tr>
     </tbody>
   </table>
-  <script src="script.js"></script>
-  <canvas id="confetti-canvas"></canvas>
 </body>
 </html>
