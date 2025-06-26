@@ -1,57 +1,60 @@
+// script-krynet.js
 document.addEventListener("DOMContentLoaded", () => {
   const winnerRow = document.getElementById("krynet-row");
-  if (winnerRow) {
-    const confettiPieces = winnerRow.querySelectorAll(".confetti-piece");
+  if (!winnerRow) return; // EXIT if no krynet-row on the page
 
-    winnerRow.addEventListener("mouseenter", () => {
-      confettiPieces.forEach(piece => {
-        piece.style.opacity = "1";
-        piece.style.animationPlayState = "running";
-      });
-    });
+  const confettiPieces = winnerRow.querySelectorAll(".confetti-piece");
 
-    winnerRow.addEventListener("mouseleave", () => {
-      confettiPieces.forEach(piece => {
-        piece.style.opacity = "0";
-        piece.style.animationPlayState = "paused";
-      });
+  winnerRow.addEventListener("mouseenter", () => {
+    confettiPieces.forEach(piece => {
+      piece.style.opacity = "1";
+      piece.style.animationPlayState = "running";
     });
-  }
+  });
+
+  winnerRow.addEventListener("mouseleave", () => {
+    confettiPieces.forEach(piece => {
+      piece.style.opacity = "0";
+      piece.style.animationPlayState = "paused";
+    });
+  });
 
   launchConfettiFromElement('tr.winner');
 
-  const winnerClickTarget = document.querySelector('tr.winner');
-  if (winnerClickTarget) {
-    winnerClickTarget.addEventListener('click', () => {
-      launchConfettiFromElement('tr.winner');
-    });
-  }
+  winnerRow.addEventListener('click', () => {
+    launchConfettiFromElement('tr.winner');
+  });
 });
 
 const canvas = document.getElementById('confetti-canvas');
-const ctx = canvas ? canvas.getContext('2d') : null;
+const ctx = canvas?.getContext('2d') || null;
 
 let confetti = [];
-let animationFrameId;
+let animationFrameId = null;
 
+let resizeTimeout = null;
 function resizeCanvas() {
-  if (canvas) {
+  if (!canvas) return;
+  if (resizeTimeout) clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-  }
+  }, 100);
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
+const COLORS = [
+  '#f44336', '#e91e63', '#9c27b0', '#3f51b5',
+  '#2196f3', '#00bcd4', '#009688', '#4caf50',
+  '#cddc39', '#ffc107', '#ff9800', '#ff5722'
+];
 function randomColor() {
-  const colors = ['#f44336', '#e91e63', '#9c27b0', '#3f51b5', '#2196f3', '#00bcd4', '#009688', '#4caf50', '#cddc39', '#ffc107', '#ff9800', '#ff5722'];
-  return colors[Math.floor(Math.random() * colors.length)];
+  return COLORS[Math.floor(Math.random() * COLORS.length)];
 }
-
 function createConfettiPiece(x, y) {
   return {
-    x,
-    y,
+    x, y,
     size: Math.random() * 8 + 4,
     color: randomColor(),
     velocity: {
@@ -64,10 +67,8 @@ function createConfettiPiece(x, y) {
     alpha: 1
   };
 }
-
 function updateConfetti() {
   if (!ctx || !canvas) return;
-
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   confetti = confetti.filter(c => c.alpha > 0);
   confetti.forEach(c => {
@@ -76,7 +77,6 @@ function updateConfetti() {
     c.y += c.velocity.y;
     c.rotation += c.rotationSpeed;
     c.alpha -= 0.01;
-
     ctx.save();
     ctx.translate(c.x, c.y);
     ctx.rotate((c.rotation * Math.PI) / 180);
@@ -85,24 +85,28 @@ function updateConfetti() {
     ctx.fillRect(-c.size / 2, -c.size / 2, c.size, c.size);
     ctx.restore();
   });
-
   if (confetti.length > 0) {
     animationFrameId = requestAnimationFrame(updateConfetti);
+  } else {
+    animationFrameId = null;
   }
 }
-
 function launchConfettiFromElement(selector) {
   const el = document.querySelector(selector);
   if (!el || !canvas) return;
-
   const rect = el.getBoundingClientRect();
   const x = rect.left + rect.width / 2;
   const y = rect.top + rect.height / 2;
-
   for (let i = 0; i < 150; i++) {
     confetti.push(createConfettiPiece(x, y));
   }
-
-  cancelAnimationFrame(animationFrameId);
+  if (animationFrameId !== null) {
+    cancelAnimationFrame(animationFrameId);
+  }
   updateConfetti();
 }
+window.addEventListener('beforeunload', () => {
+  if (animationFrameId !== null) {
+    cancelAnimationFrame(animationFrameId);
+  }
+});
