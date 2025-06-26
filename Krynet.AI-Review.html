@@ -3,70 +3,84 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Krynet.ai - Pip-Boy Style Review</title>
+<title>Krynet.ai - Too advanced?</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
   body {
-    margin: 0;
-    padding: 1rem 2rem;
-    background-color: #0b130b;
-    color: #7fff3f;
-    font-family: 'Share Tech Mono', monospace;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: 'Source Code Pro', monospace;
     font-size: 16px;
-    line-height: 1.4;
+    line-height: 1.5;
+    padding: 1.5rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
     user-select: none;
     overflow-y: scroll;
     height: 100vh;
     box-sizing: border-box;
-  }
-
-  /* Container to keep content narrower */
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    border: 4px solid #4d8b04;
-    padding: 1.5rem 2rem;
-    background: #051005;
-    box-shadow:
-      0 0 15px #4d8b04,
-      inset 0 0 20px #3b6a02;
     position: relative;
   }
 
-  /* Glowing scanline effect */
-  .scanline {
+  /* Scanline animation */
+  body::before {
+    content: "";
+    pointer-events: none;
     position: fixed;
     top: 0; left: 0;
     width: 100vw;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, rgba(127,255,63,0.4), transparent);
-    animation: scan 6s linear infinite;
-    pointer-events: none;
-    z-index: 1000;
+    height: 100vh;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0,255,0,0.05),
+      rgba(0,255,0,0.05) 2px,
+      transparent 2px,
+      transparent 4px
+    );
+    animation: scanlineMove 6s linear infinite;
+    z-index: 9999;
   }
-  @keyframes scan {
-    0% {transform: translateX(-100%);}
-    100% {transform: translateX(100%);}
+
+  @keyframes scanlineMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 4px; }
   }
 
   h1, h2 {
+    font-weight: 700;
     margin-top: 0;
     text-shadow:
-      0 0 8px #7fff3f,
-      0 0 15px #4d8b04;
+      0 0 5px #00ff00,
+      0 0 10px #00ff00;
   }
 
+  /* Glitch flicker on main heading */
   h1 {
     font-size: 2.5rem;
-    border-bottom: 2px solid #4d8b04;
+    border-bottom: 2px solid #00ff00;
     padding-bottom: 0.3rem;
+    position: relative;
+    animation: glitch-flicker 2s infinite;
+  }
+
+  @keyframes glitch-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+      opacity: 1;
+      text-shadow:
+        0 0 5px #00ff00,
+        0 0 10px #00ff00;
+    }
+    20%, 22%, 24%, 55% {
+      opacity: 0.5;
+      text-shadow: none;
+    }
   }
 
   h2 {
     font-size: 1.5rem;
     margin-top: 2rem;
-    border-bottom: 1px solid #4d8b04;
+    border-bottom: 1px solid #00ff00;
     padding-bottom: 0.2rem;
   }
 
@@ -79,85 +93,97 @@
   }
 
   li {
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
   }
 
   code {
-    background-color: #1b311b;
-    color: #a0ff7a;
+    background-color: #003300;
+    color: #33ff33;
     padding: 2px 6px;
     border-radius: 3px;
-    font-size: 0.95rem;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'Source Code Pro', monospace;
   }
 
   .quote {
     font-style: italic;
-    border-left: 4px solid #7fff3f;
+    border-left: 4px solid #00ff00;
     padding-left: 1rem;
     margin: 1.5rem 0;
-    color: #a9ff7f;
-    text-shadow: 0 0 6px #7fff3f;
+    color: #66ff66;
+    text-shadow: 0 0 6px #00ff00;
   }
 
   footer {
     margin-top: 3rem;
     font-size: 0.85rem;
     text-align: center;
-    color: #4d8b04;
-    text-shadow: 0 0 4px #4d8b04;
+    color: #007700;
+    text-shadow: 0 0 4px #007700;
   }
 
-  /* Scrollbar styled to fit the theme */
+  /* Blinking cursor effect */
+  .cursor {
+    display: inline-block;
+    background-color: #00ff00;
+    width: 10px;
+    height: 1.2em;
+    margin-left: 3px;
+    animation: blink 1.2s steps(2, start) infinite;
+    vertical-align: bottom;
+  }
+
+  @keyframes blink {
+    0%, 50% { background-color: #00ff00; }
+    51%, 100% { background-color: transparent; }
+  }
+
+  /* Scrollbar style */
   ::-webkit-scrollbar {
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #051005;
+    background: #000;
   }
   ::-webkit-scrollbar-thumb {
-    background: #4d8b04;
+    background: #00ff00;
     border-radius: 4px;
-    box-shadow: inset 0 0 5px #7fff3f;
+    box-shadow: inset 0 0 5px #00ff00;
   }
 </style>
 </head>
 <body>
-  <div class="scanline"></div>
-  <div class="container">
-    <h1>Krynet.ai — Too Advanced for 2025?</h1>
-    <p><strong>Date:</strong> June 2025</p>
-    <p><strong>Author:</strong> Independent Security Analyst</p>
+  <h1>Krynet.ai — Too Advanced for 2025?<span class="cursor"></span></h1>
+  <p><strong>Date:</strong> June 2025</p>
+  <p><strong>Author:</strong> Independent Security Analyst</p>
 
-    <div class="quote">“This isn’t a 2025 app — Krynet feels like it teleported here from 2030.”</div>
+  <div class="quote">“This isn’t a 2025 app — Krynet feels like it teleported here from 2030.”</div>
 
-    <h2>Why Krynet is Ahead of Its Time</h2>
-    <p>Krynet.ai is a radically advanced communications platform built by gray-hat and black-hat developers. It merges military-grade privacy, custom antivirus scanning, AI-powered moderation, and a native app stack that outclasses nearly all consumer apps — especially Discord. Built on <code>ImGui</code>, it ditches Electron entirely, resulting in a tool that's fast, minimal, and secure.</p>
-    <p>The name <strong>Krynet</strong> (previously referred to as <em>Crynet</em>) draws inspiration from the infamous WannaCry virus, signaling its deep roots in cybersecurity and the battle against digital threats.</p>
-    <p>Krynet also invests heavily in quantum computing research to future-proof its security infrastructure against emerging quantum threats.</p>
+  <h2>Why Krynet is Ahead of Its Time</h2>
+  <p>Krynet.ai is a radically advanced communications platform built by gray-hat and black-hat developers. It merges military-grade privacy, custom antivirus scanning, AI-powered moderation, and a native app stack that outclasses nearly all consumer apps — especially Discord. Built on <code>ImGui</code>, it ditches Electron entirely, resulting in a tool that's fast, minimal, and secure.</p>
+  <p>The name <strong>Krynet</strong> (previously referred to as <em>Crynet</em>) draws inspiration from the infamous WannaCry virus, signaling its deep roots in cybersecurity and the battle against digital threats.</p>
+  <p>Krynet also invests heavily in quantum computing research to future-proof its security infrastructure against emerging quantum threats.</p>
 
-    <h2>Corporate Context</h2>
-    <p>Krynet operates as a subsidiary of <strong>Bloodware, Inc.</strong> — a software development and modding studio formerly known as BGI and Team Force RBLX. Bloodware oversees several independent companies sharing a leadership core:</p>
-    <ul>
-      <li><strong>ARZA</strong> – Premium desktops and laptops for game developers and gamers</li>
-      <li><strong>Dead Lantern Games (DLG)</strong> – Indie studio focused on mature-rated horror and shooter games with deep stories</li>
-      <li><strong>Velxy Studios, Inc.</strong> (formerly Waist Studios) – Creates teen-rated games emphasizing creativity and accessibility</li>
-      <li><strong>Krynet</strong> – API-driven, privacy-first social platform for streamlined communication</li>
-    </ul>
-    <p>Each company is independently operated but shares the same core leadership team.</p>
+  <h2>Corporate Context</h2>
+  <p>Krynet operates as a subsidiary of <strong>Bloodware, Inc.</strong> — a software development and modding studio formerly known as BGI and Team Force RBLX. Bloodware oversees several independent companies sharing a leadership core:</p>
+  <ul>
+    <li><strong>ARZA</strong> – Premium desktops and laptops for game developers and gamers</li>
+    <li><strong>Dead Lantern Games (DLG)</strong> – Indie studio focused on mature-rated horror and shooter games with deep stories</li>
+    <li><strong>Velxy Studios, Inc.</strong> (formerly Waist Studios) – Creates teen-rated games emphasizing creativity and accessibility</li>
+    <li><strong>Krynet</strong> – API-driven, privacy-first social platform for streamlined communication</li>
+  </ul>
+  <p>Each company is independently operated but shares the same core leadership team.</p>
 
-    <h2>Built for Tomorrow's Threats</h2>
-    <p>With zero telemetry, post-quantum encryption options, and real-time AI that inspects files, scans metadata, and moderates chats, Krynet isn't keeping up with the future — it's <em>dragging the future into the present</em>. The architecture assumes every file, user, and connection could be hostile, and defends accordingly.</p>
+  <h2>Built for Tomorrow's Threats</h2>
+  <p>With zero telemetry, post-quantum encryption options, and real-time AI that inspects files, scans metadata, and moderates chats, Krynet isn't keeping up with the future — it's <em>dragging the future into the present</em>. The architecture assumes every file, user, and connection could be hostile, and defends accordingly.</p>
 
-    <h2>ImGui UI — The Anti-Discord</h2>
-    <p>Krynet borrows Discord's layout but swaps out its bloated Chromium base for a native, low-level UI rendered through <code>ImGui</code>. This makes it snappier, lighter, and impossible to snoop through browser devtools. Input lag is nonexistent. Resource usage? A fraction of Discord’s. It's like running a C2 terminal with chat features bolted on — but beautiful.</p>
+  <h2>ImGui UI — The Anti-Discord</h2>
+  <p>Krynet borrows Discord's layout but swaps out its bloated Chromium base for a native, low-level UI rendered through <code>ImGui</code>. This makes it snappier, lighter, and impossible to snoop through browser devtools. Input lag is nonexistent. Resource usage? A fraction of Discord’s. It's like running a C2 terminal with chat features bolted on — but beautiful.</p>
 
-    <h2>Conclusion</h2>
-    <p>To say Krynet is “early” is an understatement. It doesn't belong in 2025 — it feels like it was built for the 2030s, when digital privacy is lawless and AI moderation is standard. It's a tool for those who think ten steps ahead, not one. Whether the world is ready or not, Krynet is already here.</p>
+  <h2>Conclusion</h2>
+  <p>To say Krynet is “early” is an understatement. It doesn't belong in 2025 — it feels like it was built for the 2030s, when digital privacy is lawless and AI moderation is standard. It's a tool for those who think ten steps ahead, not one. Whether the world is ready or not, Krynet is already here.</p>
 
-    <footer>
-      &copy; 2025 SecurityLabs Review. This analysis is not affiliated with Krynet.ai or its developers.
-    </footer>
-  </div>
+  <footer>
+    &copy; 2025 SecurityLabs Review. This analysis is not affiliated with Krynet.ai or its developers.
+  </footer>
 </body>
 </html>
